@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script src="https://d26b395fwzu5fz.cloudfront.net/3.2.0/keen.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var client = new Keen({
+          projectId: "",   // String (required)
+          writeKey: "",     // String (required for sending data)
+          readKey: "",       // String (required for querying data)
+          protocol: "http",              // String (optional: https | http | auto)
+          host: "api.keen.io/3.0",        // String (optional)
+          requestType: "jsonp"            // String (optional: jsonp, xhr, beacon)
+        });
+
+        Keen.ready(function(){
+          var query = new Keen.Query("average", {
+            eventCollection: "coffee Congo Kivu Bukavu-Beni attempt 22015-01-08T00:21:11.117Z",
+            targetProperty: "data.fahrenheit",
+            groupBy: "keen.timestamp"
+          });
+          client.draw(query, document.getElementById("total-daily-revenue-linechart"), {
+            chartType: "linechart",
+            title: "Roast Profile - coffee Congo Kivu Bukavu-Beni 2015-01-08T00:21:11.117Z"
+          });
+        });
+
+    </script>
+  </head>
+  <body>
+    <div id="total-daily-revenue-linechart"></div>
+  </body>
+</html>
